@@ -18,8 +18,26 @@ jQuery.cookie = function (key, value, options) {
         }
 
         if (typeof options.expires === 'number') {
-            var days = options.expires, t = options.expires = new Date();
-            t.setDate(t.getDate() + days);
+            options.expires = new Date(options.expires);
+        } else if (typeof options.expires === 'string') {
+            var expires = options.expires;
+            var diff = parseInt(expires.substr(0,expires.length-1));
+            var period = new Date();
+            switch (expires.charAt(expires.length-1).toLowerCase()) {
+                case 'y':
+                    period.setFullYear(period.getFullYear() + diff);
+                    break;
+                case 'm':
+                    period.setMonth(period.getMonth() + diff);
+                    break;
+                case 'd':
+                    period.setDate(period.getDate() + diff);
+                    break;
+                case 'h':
+                    period.setHours(period.getHours() + diff);
+                    break;
+            }
+            options.expires = period;
         }
 
         value = String(value);
