@@ -16,11 +16,12 @@ Create session cookie:
 
 Create expiring cookie, 7 days from then:
 
-    $.cookie('the_cookie', 'the_value', { expires: 7 });
+    $.cookie('the_cookie', 'the_value', { expires: '7d' });
+other variants: '1y' - one year, '1m' - one month, '1h' - one hour
 
 Create expiring cookie, valid across entire page:
 
-    $.cookie('the_cookie', 'the_value', { expires: 7, path: '/' });
+    $.cookie('the_cookie', 'the_value', { expires: '7d', path: '/' });
 
 Read cookie:
 
@@ -35,7 +36,7 @@ Delete cookie by passing null as value:
 
     expires: 365
 
-Define lifetime of the cookie. Value can be a +Number+ (which will be interpreted as days from time of creation) or a +Date+ object. If omitted, the cookie is a session cookie.
+Define lifetime of the cookie. Value can be a +Number+ (which will be interpreted as milliseconds from Unix epoch), or +String+ or a +Date+ object. If omitted, the cookie is a session cookie.
 
     path: '/'
 
